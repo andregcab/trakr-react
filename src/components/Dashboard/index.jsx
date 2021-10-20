@@ -1,24 +1,25 @@
-import React, { useState } from "react";
-import { Button } from "react-bootstrap";
-import SessionModal from "../SessionModal";
+import React, { useState } from 'react';
+import { Button } from 'react-bootstrap';
+import SessionModal from '../SessionModal';
+
 const DEFAULT_SESSION = {
-  id: "",
-  user_id: "",
-  activity_id: "",
-  created_at: "",
+  id: '',
+  user_id: '',
+  activity_id: '',
+  created_at: '',
   last_started: null,
   elapsed_time: null,
   in_session: false,
-  comment: "",
+  comment: '',
   activities: [
     {
-      id: "",
-      activity_type: "",
-      eng_name: "",
-      charge_code: "",
-      client_name: "",
-      client_number: "",
-      comment: "",
+      id: '',
+      activity_type: '',
+      eng_name: '',
+      charge_code: '',
+      client_name: '',
+      client_number: '',
+      comment: '',
     },
   ],
 };

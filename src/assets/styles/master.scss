@@ -1,0 +1,13 @@
+// master import file
+@import 'variables';
+@import '~bootstrap/scss/bootstrap';
+@import 'overrides';
+@import 'general';
+@import '~react-pro-sidebar/dist/scss/styles.scss';
+
+// components
+@import 'components/dashboard';
+@import 'components/overview';
+@import 'components/session-modal';
+@import 'components/sidebar';
+@import 'components/navbar';
