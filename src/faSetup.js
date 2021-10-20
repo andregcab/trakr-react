@@ -1,10 +1,19 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 
-// find the free icon package
+import {
+  faAngleDoubleLeft,
+  faAngleDoubleRight,
+  faCalendarDay,
+  faChevronDown,
+  faStopwatch,
+  faTimes,
+} from '@fortawesome/free-solid-svg-icons';
 
-// library.add(
-//   faAt,
-//   faBars,
-//   faCaretCircleRight,
-//   ...etc
-// );
+library.add(
+  faAngleDoubleLeft,
+  faAngleDoubleRight,
+  faCalendarDay,
+  faChevronDown,
+  faStopwatch,
+  faTimes
+);
