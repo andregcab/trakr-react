@@ -1,0 +1,12 @@
+// master import file
+@import 'variables';
+@import '~bootstrap/scss/bootstrap';
+@import 'overrides';
+@import 'general';
+
+// components
+@import 'components/dashboard';
+@import 'components/overview';
+@import 'components/session-modal';
+@import 'components/sidebar';
+@import 'components/topbar';
