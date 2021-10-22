@@ -1,17 +1,6 @@
 // react-pro-sidebar overrides
-$sidebar-bg-color: lighten($layout-green, 12) !default;
+$sidebar-bg-color: $layout-green-light !default;
 $sidebar-color: $text-black !default;
-$highlight-color: $text-light !default;
+$highlight-color: $layout-beige !default;
+$sidebar-width: 220px !default;
 $icon-size: 35px !default;
-
-.btn-dropdown {
-  background-color: $layout-green;
-
-  &:focus {
-    box-shadow: none;
-  }
-
-  &:active {
-    background-color: rgba($layout-green, 0.4);
-  }
-}

@@ -1,12 +1,13 @@
 .main-navbar {
-  padding: 0 60px 0 100px;
+  padding: 0 15px 0 5px;
   border-bottom: $shadow solid 2px;
-  background-color: $layout-green;
+  background-color: $layout-beige;
   .navbar-brand {
     font-size: 30px;
     letter-spacing: 2px;
+    color: lighten($text-black, 10) !important;
     &:hover {
-      color: $text-light !important;
+      color: darken($layout-green, 20) !important;
     }
   }
   .username {

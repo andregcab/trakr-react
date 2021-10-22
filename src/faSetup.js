@@ -5,6 +5,9 @@ import {
   faAngleDoubleRight,
   faCalendarDay,
   faChevronDown,
+  faChevronCircleLeft,
+  faChevronCircleRight,
+  faCopy,
   faStopwatch,
   faTimes,
 } from '@fortawesome/free-solid-svg-icons';
@@ -14,6 +17,9 @@ library.add(
   faAngleDoubleRight,
   faCalendarDay,
   faChevronDown,
+  faChevronCircleLeft,
+  faChevronCircleRight,
+  faCopy,
   faStopwatch,
   faTimes
 );
