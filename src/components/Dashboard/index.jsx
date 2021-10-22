@@ -45,14 +45,14 @@ const Dashboard = () => {
       <div>
         <Button onClick={handleShow}> + </Button>
       </div>
-      <SessionModal
+      {/* <SessionModal
         newSession
         show={showModal}
         handleSave={handleClose}
         handleClose={handleClose}
         handleChange={handleChange}
         currentActivity={currentActivity}
-      />
+      /> */}
     </>
   );
 };

@@ -1,75 +1,13 @@
-import React from "react";
-import { Form, Modal, Button } from "react-bootstrap";
-
-const BillableForm = ({ data, handleChange }) => (
-  <Form>
-    <Form.Label>Client Name</Form.Label>
-    <Form.Control
-      type="text"
-      placeholder="client name"
-      value={data.client_name}
-      onChange={(e) => {
-        handleChange(e.target.value, "client_name");
-      }}
-    />
-    <Form.Label>Client #</Form.Label>
-    <Form.Control
-      type="text"
-      placeholder="123456789"
-      value={data.client_number}
-      onChange={(e) => {
-        handleChange(e.target.value, "client_number");
-      }}
-    />
-    <Form.Label>Eng Name</Form.Label>
-    <Form.Control type="text" placeholder="eng name" value={data.eng_name} />
-    <Form.Label>Charge Code</Form.Label>
-    <Form.Control
-      type="text"
-      placeholder="charge code"
-      value={data.charge_code}
-      onChange={(e) => {
-        handleChange(e.target.value, "charge_code");
-      }}
-    />
-    <Form.Label>Comment</Form.Label>
-    <Form.Control
-      type="textarea"
-      placeholder="a comment"
-      value={data.comment}
-      onChange={(e) => {
-        handleChange(e.target.value, "comment");
-      }}
-    />
-  </Form>
-);
-
-const PersonalForm = ({ data, handleChange }) => (
-  <Form>
-    <Form.Label>Name</Form.Label>
-    <Form.Control
-      type="text"
-      placeholder="name"
-      value={data.client_name}
-      onChange={(e) => {
-        handleChange(e.target.value, "client_name");
-      }}
-    />
-    <Form.Label>Comment</Form.Label>
-    <Form.Control
-      type="textarea"
-      placeholder="a comment"
-      value={data.comment}
-      onChange={(e) => {
-        handleChange(e.target.value, "comment");
-      }}
-    />
-  </Form>
-);
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Modal } from 'react-bootstrap';
+import Button from '@mui/material/Button';
+import BillableForm from './BillableForm';
+import PersonalForm from './PersonalForm';
+import { activityPropTypes } from '../lib';
 
 const SessionModal = ({
   show,
-  newSession,
   handleClose,
   handleSave,
   handleChange,
@@ -77,27 +15,40 @@ const SessionModal = ({
   modalTitle,
 }) => {
   return (
-    <Modal show={show}>
+    <Modal show={show} onHide={handleClose}>
       <Modal.Header>
-        <Modal.Title>{modalTitle || "Create New Session"}</Modal.Title>
+        <Modal.Title>{modalTitle || 'Create New Session'}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {currentActivity.activity_type === "BILLABLE" ? (
-          <BillableForm data={currentActivity} handleChange={handleChange} />
+        {currentActivity.activityType === 'BILLABLE' ? (
+          <BillableForm activity={currentActivity} handleChange={handleChange} />
         ) : (
-          <PersonalForm data={currentActivity} handleChange={handleChange} />
+          <PersonalForm activity={currentActivity} handleChange={handleChange} />
         )}
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          Close
+        <Button className="ms-4" variant="outlined" color="error" onClick={handleClose}>
+          Cancel
         </Button>
-        <Button variant="primary" onClick={handleClose}>
+        <Button className="ms-4" variant="contained" color="success" onClick={handleSave}>
           Save Changes
         </Button>
       </Modal.Footer>
     </Modal>
   );
+};
+
+SessionModal.defaultProps = {
+  modalTitle: 'Create new session',
+};
+
+SessionModal.propTypes = {
+  modalTitle: PropTypes.string,
+  show: PropTypes.bool.isRequired,
+  handleSave: PropTypes.func.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  currentActivity: activityPropTypes.isRequired,
 };
 
 export default SessionModal;
