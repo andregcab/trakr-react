@@ -9,6 +9,16 @@ const BillableForm = ({ activity, handleChange }) => {
     <Box className="d-flex flex-column" component="form" autoComplete="off">
       <TextField
         id="outlined-required"
+        label="Client number"
+        className="m-3"
+        variant="standard"
+        value={activity.clientNumber}
+        onChange={(e) => {
+          handleChange(e.target.value, 'clientNumber');
+        }}
+      />
+      <TextField
+        id="outlined-required"
         label="Client name"
         className="m-3"
         variant="standard"
@@ -19,12 +29,12 @@ const BillableForm = ({ activity, handleChange }) => {
       />
       <TextField
         id="outlined-required"
-        label="Client number"
+        label="Eng name"
         className="m-3"
         variant="standard"
-        value={activity.clientNumber}
+        value={activity.engName}
         onChange={(e) => {
-          handleChange(e.target.value, 'clientNumber');
+          handleChange(e.target.value, 'engName');
         }}
       />
       <TextField

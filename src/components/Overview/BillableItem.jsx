@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
+import { useIsMobile } from 'lib';
 import { ListGroup } from 'react-bootstrap';
 import Tooltip from '@mui/material/Tooltip';
 import EditIcon from '@mui/icons-material/Edit';
@@ -9,8 +10,9 @@ import IconButton from '@mui/material/IconButton';
 import { activityPropTypes, sessionPropTypes } from '../lib';
 
 const BillableItem = ({ activity, handleShow, session }) => {
-  const hours = Math.floor(session.elapsedTime / 60);
+  const isMobile = useIsMobile();
   const minutes = session.elapsedTime % 60;
+  const hours = Math.floor(session.elapsedTime / 60);
 
   return (
     <ListGroup horizontal="md" className="my-3 pe-0">
@@ -18,7 +20,7 @@ const BillableItem = ({ activity, handleShow, session }) => {
         <span className="item-label">Created on</span>
         <span>{moment(session.createdAt).format('L')}</span>
       </ListGroup.Item>
-      <ListGroup.Item>
+      <ListGroup.Item id="client-num">
         <span className="item-label">Client#</span>
         <span className="client-number">{activity.clientNumber}</span>
       </ListGroup.Item>
@@ -39,12 +41,12 @@ const BillableItem = ({ activity, handleShow, session }) => {
         <span>{`${hours}h ${minutes}m`}</span>
       </ListGroup.Item>
       <div className="btn-icons">
-        <Tooltip title="copy" placement="right" arrow>
+        <Tooltip title="copy" placement={isMobile ? 'top' : 'right'} arrow>
           <IconButton aria-label="copy" onClick={() => handleShow(activity.id)}>
             <ContentCopyIcon className="icon" />
           </IconButton>
         </Tooltip>
-        <Tooltip title="edit" placement="right" arrow>
+        <Tooltip title="edit" placement={isMobile ? 'top' : 'right'} arrow>
           <IconButton aria-label="edit" onClick={() => handleShow(activity.id)}>
             <EditIcon className="icon" />
           </IconButton>

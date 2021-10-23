@@ -1,13 +1,28 @@
 import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
 import { sessionPropTypes } from 'components/lib';
+import { UPDATE_SESSION } from 'graphql/mutations';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 import BillableItem from './BillableItem';
 import PersonalItem from './PersonalItem';
 import SessionModal from '../SessionModal';
-import { DEFAULT_ACTIVITY } from './lib';
+import { DEFAULT_ACTIVITY, activityUpdateData } from './lib';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const SessionItem = ({ session }) => {
   const [showModal, setShowModal] = useState(false);
+  const [showSnack, setShowSnack] = useState(false);
   const [currentActivity, setCurrentActivity] = useState(DEFAULT_ACTIVITY);
+  const [sessionUpdate] = useMutation(UPDATE_SESSION, {
+    onCompleted: () => {
+      setShowModal(false);
+      setShowSnack(true);
+    },
+  });
 
   const handleClose = () => setShowModal(false);
   const handleShow = (activityId) => {
@@ -20,6 +35,15 @@ const SessionItem = ({ session }) => {
       ...prev,
       [field]: value,
     }));
+  };
+
+  const handleSave = () => {
+    sessionUpdate({
+      variables: {
+        id: session.id,
+        data: { activitiesAttributes: activityUpdateData(currentActivity) },
+      },
+    });
   };
 
   return (
@@ -44,11 +68,21 @@ const SessionItem = ({ session }) => {
       <SessionModal
         show={showModal}
         handleClose={handleClose}
-        handleSave={handleClose}
+        handleSave={handleSave}
         modalTitle="Edit Activity"
         currentActivity={currentActivity}
         handleChange={handleChange}
       />
+      <Snackbar
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        autoHideDuration={5000}
+        open={showSnack}
+        onClose={() => setShowSnack(false)}
+      >
+        <Alert onClose={() => setShowSnack(false)} severity="success">
+          Activity updated!
+        </Alert>
+      </Snackbar>
     </>
   );
 };

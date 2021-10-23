@@ -64,12 +64,6 @@
           white-space: nowrap;
           text-overflow: ellipsis;
         }
-        .client-number {
-          max-width: 50px;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-        }
       }
       @media screen and (min-width: 992px) {
         .set-width {
@@ -100,7 +94,7 @@
       .icon {
         color: lighten($text-black, 25);
       }
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: 767px) {
         display: flex;
         .icon {
           font-size: 36px;
@@ -117,11 +111,17 @@
     max-width: 400px;
   }
   @media screen and (min-width: 768px) {
-    min-width: 660px;
-    max-width: 660px;
+    min-width: 620px;
+    max-width: 620px;
+    #client-num {
+      display: none;
+    }
   }
   @media screen and (min-width: 992px) {
-    min-width: 850px;
-    max-width: 850px;
+    min-width: 800px;
+    max-width: 800px;
+    #client-num {
+      display: inherit;
+    }
   }
 }
