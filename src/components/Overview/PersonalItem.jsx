@@ -1,11 +1,12 @@
 import React from 'react';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 import { ListGroup } from 'react-bootstrap';
 import Tooltip from '@mui/material/Tooltip';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import { activityPropTypes, sessionPropTypes } from 'components/lib';
+import { activityPropTypes, sessionPropTypes } from '../lib';
 
 const PersonalItem = ({ activity, handleShow, session }) => {
   const hours = Math.floor(session.elapsedTime / 60);
@@ -15,7 +16,7 @@ const PersonalItem = ({ activity, handleShow, session }) => {
     <ListGroup horizontal="md" className="my-2 pe-0">
       <ListGroup.Item>
         <span className="item-label">Created at</span>
-        <span>{session.createdAt}</span>
+        <span>{moment(session.createdAt).format('L')}</span>
       </ListGroup.Item>
       <ListGroup.Item>
         <span className="item-label">Name</span>

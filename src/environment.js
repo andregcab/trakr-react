@@ -4,7 +4,8 @@ const common = {};
 const env = {
   development: {
     ROUTER_BASE_NAME: '/',
-    API_BASE_URL: 'http://localhost:3000',
+    API_BASE_URL: 'http://localhost:3001',
+    API_GQL_PATH: '/graphql',
   },
   test: {
     ROUTER_BASE_NAME: '/',
