@@ -9,7 +9,7 @@ import { USER } from 'graphql/queries';
 const NavBar = () => {
   const { loading, data } = useQuery(USER, { variables: { id: '1' } });
   if (loading) return '';
-  const firstName = data.user.name.split(' ')[0];
+  const { firstName } = data.user;
 
   return (
     <Navbar className="main-navbar flex-nowrap">
@@ -20,7 +20,7 @@ const NavBar = () => {
       <Navbar.Collapse className="justify-content-end">
         <Navbar.Text className="d-flex align-items-center">
           <Avatar className="user-avatar" sx={{ bgcolor: '#91b194' }}>
-            {firstName[0]}
+            {firstName[0].toUpperCase()}
           </Avatar>
           <span className="ms-3 username">{`Hi, ${firstName}`}</span>
         </Navbar.Text>

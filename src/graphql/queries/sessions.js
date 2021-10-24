@@ -9,7 +9,7 @@ export const SESSIONS = gql`
       inSession
       lastStarted
       elapsedTime
-      activities {
+      activity {
         id
         engName
         chargeCode

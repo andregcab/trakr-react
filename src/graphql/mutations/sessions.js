@@ -9,7 +9,7 @@ export const CREATE_SESSION = gql`
       inSession
       lastStarted
       elapsedTime
-      activities {
+      activity {
         id
         engName
         chargeCode
@@ -32,7 +32,7 @@ export const UPDATE_SESSION = gql`
       inSession
       lastStarted
       elapsedTime
-      activities {
+      activity {
         id
         engName
         chargeCode
@@ -42,6 +42,14 @@ export const UPDATE_SESSION = gql`
         updatedAt
         activityType
       }
+    }
+  }
+`;
+
+export const DELETE_SESSION = gql`
+  mutation DeleteSession($id: ID!) {
+    deleteSession(id: $id) {
+      id
     }
   }
 `;

@@ -1,0 +1,17 @@
+.dashboard-container {
+  .add-btn {
+    width: 80px;
+    height: 80px;
+    right: 80px;
+    bottom: 60px;
+    position: fixed;
+    background-color: $layout-green;
+    &:hover {
+      background-color: $layout-green-light;
+    }
+    svg {
+      height: 50px;
+      width: 50px;
+    }
+  }
+}
