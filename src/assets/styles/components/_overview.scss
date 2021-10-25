@@ -1,0 +1,127 @@
+.overview-container {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  .section-text {
+    margin: 20px 0 40px 0;
+  }
+  .list-group {
+    min-width: 280px;
+    text-transform: none;
+    align-items: center;
+    border: solid 1px $shadow;
+    justify-content: flex-start;
+    background-color: $card-white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    @media screen and (max-width: 768px) {
+      align-items: flex-start;
+    }
+    &:hover {
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+    .list-group-item {
+      border: none;
+      text-align: left;
+      display: inline-flex;
+      flex-direction: column;
+      background-color: $card-white;
+      .item-label {
+        font-size: 12px;
+      }
+      .item-text {
+        max-width: 100px;
+        height: 24px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      @media screen and (min-width: 375px) {
+        .item-text {
+          max-width: 220px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+        .client-number {
+          max-width: 200px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+      }
+      @media screen and (min-width: 768px) {
+        .item-text {
+          max-width: 80px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+        .personal-item-text {
+          max-width: 385px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+      }
+      @media screen and (min-width: 992px) {
+        .item-text {
+          max-width: 125px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+        .personal-item-text {
+          max-width: 552px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+        .client-number {
+          max-width: 85px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+    .btn-icons {
+      margin-left: auto;
+      width: min-content;
+      text-align: right;
+      align-self: center;
+      .icon {
+        color: lighten($text-black, 25);
+      }
+      @media screen and (max-width: 767px) {
+        display: flex;
+        .icon {
+          font-size: 36px;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 540px) {
+    min-width: 200px;
+    max-width: 250px;
+  }
+  @media screen and (min-width: 540px) {
+    min-width: 400px;
+    max-width: 400px;
+  }
+  @media screen and (min-width: 768px) {
+    min-width: 620px;
+    max-width: 620px;
+    #client-num {
+      display: none;
+    }
+  }
+  @media screen and (min-width: 992px) {
+    min-width: 800px;
+    max-width: 800px;
+    #client-num {
+      display: inherit;
+    }
+  }
+}

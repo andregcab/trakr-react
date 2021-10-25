@@ -1,0 +1,23 @@
+.main-navbar {
+  padding: 0 15px 0 5px;
+  border-bottom: $shadow solid 2px;
+  background-color: $layout-beige;
+  .navbar-brand {
+    font-size: 30px;
+    margin-left: 5px;
+    letter-spacing: 2px;
+    color: lighten($text-black, 10) !important;
+    &:hover {
+      color: darken($layout-green, 20) !important;
+    }
+  }
+  .username {
+    font-size: 20px;
+    color: $text-black;
+  }
+  @media screen and (max-width: 768px) {
+    .user-avatar {
+      display: none;
+    }
+  }
+}
