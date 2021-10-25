@@ -15,8 +15,10 @@ const PersonalForm = ({ activity, handleChange }) => (
       }}
     />
     <TextField
-      label="Comment"
       className="m-3"
+      label="Comment"
+      multiline
+      rows="3"
       variant="standard"
       value={activity.comment}
       onChange={(e) => {

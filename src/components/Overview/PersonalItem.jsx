@@ -23,7 +23,7 @@ const PersonalItem = ({ activity, handleShow, session }) => {
         <span className="item-label">Time spent</span>
         <span>{`${hours}h ${minutes}m`}</span>
       </ListGroup.Item>
-      <MenuButton handleShow={() => handleShow('edit')} />
+      <MenuButton handleShow={handleShow} />
     </ListGroup>
   );
 };

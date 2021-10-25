@@ -36,6 +36,7 @@ export const USER_WITH_SESSIONS_AND_ACTIVITIES = gql`
           createdAt
           updatedAt
           activityType
+          comment
         }
       }
     }

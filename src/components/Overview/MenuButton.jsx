@@ -31,19 +31,19 @@ const BillableItem = ({ handleShow }) => {
           'aria-labelledby': 'actions-btn',
         }}
       >
-        <MenuItem onClick={handleShow}>
+        <MenuItem onClick={() => handleShow('edit')}>
           <IconButton aria-label="edit">
             <Edit className="icon" />
           </IconButton>
           <span id="menu-text">Edit</span>
         </MenuItem>
-        <MenuItem onClick={handleShow}>
+        <MenuItem onClick={() => handleShow('edit')}>
           <IconButton aria-label="copy">
             <ContentCopy className="icon" />
           </IconButton>
           <span>Copy</span>
         </MenuItem>
-        <MenuItem onClick={handleShow}>
+        <MenuItem onClick={() => handleShow('delete')}>
           <IconButton aria-label="delete">
             <Delete className="icon" />
           </IconButton>

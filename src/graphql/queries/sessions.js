@@ -18,6 +18,7 @@ export const SESSIONS = gql`
         createdAt
         updatedAt
         activityType
+        comment
       }
     }
   }

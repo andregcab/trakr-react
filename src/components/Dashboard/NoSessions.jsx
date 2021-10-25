@@ -1,7 +1,7 @@
 import React from 'react';
 
-const SessionCard = () => {
-  return <div> no sessions!!</div>;
+const NoSessions = () => {
+  return <div> NO SESSION</div>;
 };
 
-export default SessionCard;
+export default NoSessions;

@@ -6,7 +6,7 @@ import useFormType from './useFormType';
 import { activityPropTypes } from '../lib';
 
 const SessionModal = ({
-  show,
+  showModal,
   newSession,
   handleSave,
   modalTitle,
@@ -17,7 +17,7 @@ const SessionModal = ({
   const modalForm = useFormType({ currentActivity, handleChange });
 
   return (
-    <Modal show={show} onHide={handleClose}>
+    <Modal show={showModal} onHide={handleClose}>
       <Modal.Header>
         <Modal.Title>{modalTitle || 'Create New Session'}</Modal.Title>
       </Modal.Header>
@@ -42,7 +42,7 @@ SessionModal.defaultProps = {
 SessionModal.propTypes = {
   modalTitle: PropTypes.string,
   newSession: PropTypes.bool,
-  show: PropTypes.bool.isRequired,
+  showModal: PropTypes.bool.isRequired,
   handleSave: PropTypes.func.isRequired,
   handleClose: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,

@@ -18,6 +18,7 @@ export const CREATE_SESSION = gql`
         createdAt
         updatedAt
         activityType
+        comment
       }
     }
   }
@@ -41,6 +42,7 @@ export const UPDATE_SESSION = gql`
         createdAt
         updatedAt
         activityType
+        comment
       }
     }
   }
@@ -50,6 +52,22 @@ export const DELETE_SESSION = gql`
   mutation DeleteSession($id: ID!) {
     deleteSession(id: $id) {
       id
+      createdAt
+      updatedAt
+      inSession
+      lastStarted
+      elapsedTime
+      activity {
+        id
+        engName
+        chargeCode
+        clientName
+        clientNumber
+        createdAt
+        updatedAt
+        activityType
+        comment
+      }
     }
   }
 `;
