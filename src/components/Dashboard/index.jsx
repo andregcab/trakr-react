@@ -1,58 +1,123 @@
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
+import AddIcon from '@mui/icons-material/Add';
+import { Fab } from '@mui/material';
+import { useQuery, useMutation } from '@apollo/client';
+import { SESSIONS } from 'graphql/queries';
+import { CREATE_SESSION, DELETE_SESSION, UPDATE_SESSION } from 'graphql/mutations';
+import NoSessions from './NoSessions';
+import CardGrid from './CardGrid';
 import SessionModal from '../SessionModal';
+import DeleteModal from '../DeleteModal';
+import Snackbar from '../SnackBar';
+import { DEFAULT_ACTIVITY, activityUpdateData } from '../lib';
 
-const DEFAULT_SESSION = {
-  id: '',
-  user_id: '',
-  activity_id: '',
-  created_at: '',
-  last_started: null,
-  elapsed_time: null,
-  in_session: false,
-  comment: '',
-  activities: [
-    {
-      id: '',
-      activity_type: '',
-      eng_name: '',
-      charge_code: '',
-      client_name: '',
-      client_number: '',
-      comment: '',
-    },
-  ],
-};
 const Dashboard = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [currentSession, setCurrentSession] = useState(DEFAULT_SESSION);
+  const [currentActivity, setCurrentActivity] = useState(DEFAULT_ACTIVITY);
+  const [showModal, setShowModal] = useState({ new: false, edit: false, delete: false });
+  const [showSnack, setShowSnack] = useState(false);
 
-  const currentActivity = currentSession.activities[0];
+  const { loading, data } = useQuery(SESSIONS, { variables: { userId: '1' } });
+  const [sessionCreate] = useMutation(CREATE_SESSION, {
+    onCompleted: () => {
+      setCurrentActivity(DEFAULT_ACTIVITY);
+      setShowModal({ new: false, edit: false, delete: false });
+      setShowSnack('added');
+    },
+  });
+  const [sessionDelete] = useMutation(DELETE_SESSION, {
+    onCompleted: () => {
+      setCurrentActivity(DEFAULT_ACTIVITY);
+      setShowModal({ new: false, edit: false, delete: false });
+      setShowSnack('deleted');
+    },
+  });
+  const [sessionUpdate] = useMutation(UPDATE_SESSION, {
+    onCompleted: () => {
+      setCurrentActivity(DEFAULT_ACTIVITY);
+      setShowModal({ new: false, edit: false, delete: false });
+      setShowSnack('updated');
+    },
+  });
 
-  const handleClose = () => setShowModal(false);
-  const handleShow = () => setShowModal(true);
+  if (loading) return '';
+
+  const handleShow = (type, activity) => {
+    if (type === 'edit' || type === 'delete') {
+      setCurrentActivity(activity);
+    }
+    setShowModal((prev) => ({ ...prev, [type]: true }));
+  };
+
+  const closeModal = () => {
+    setCurrentActivity(DEFAULT_ACTIVITY);
+    setShowModal({ new: false, edit: false, delete: false });
+  };
 
   const handleChange = (value, field) => {
-    return setCurrentSession((prev) => ({
+    return setCurrentActivity((prev) => ({
       ...prev,
-      activities: [{ ...prev.activities[0], [field]: value }],
+      [field]: value,
     }));
   };
 
+  const handleDelete = () => {
+    sessionDelete({
+      variables: { id: currentActivity.sessionId },
+      refetchQueries: [{ query: SESSIONS, variables: { userId: '1' } }],
+    });
+  };
+
+  const handleSave = () => {
+    if (showModal.edit) {
+      return sessionUpdate({
+        variables: {
+          id: currentActivity.sessionId,
+          data: { activityAttributes: activityUpdateData(currentActivity) },
+        },
+      });
+    }
+    return sessionCreate({
+      variables: {
+        data: { userId: '1', activityAttributes: activityUpdateData(currentActivity) },
+      },
+      refetchQueries: [{ query: SESSIONS, variables: { userId: '1' } }],
+    });
+  };
+
+  const userHasSessions = !!data.sessions.length;
+  const modalTitle = showModal.new ? 'Create Session' : 'Edit Session';
+
   return (
     <>
-      <div>Dashboard</div>
-      <div>
-        <Button onClick={handleShow}> + </Button>
+      <div className="dashboard-container">
+        <h2 className="my-3 mb-5">My Dashboard</h2>
+        <Container>
+          {userHasSessions ? (
+            <CardGrid sessions={data.sessions} handleShow={handleShow} />
+          ) : (
+            <NoSessions />
+          )}
+        </Container>
+        <Fab onClick={() => handleShow('new')} aria-label="add" className="add-btn">
+          <AddIcon />
+        </Fab>
       </div>
-      {/* <SessionModal
-        newSession
-        show={showModal}
-        handleSave={handleClose}
-        handleClose={handleClose}
+      <SessionModal
+        newSession={showModal.new}
+        showModal={showModal.new || showModal.edit}
+        handleSave={handleSave}
+        handleClose={closeModal}
         handleChange={handleChange}
         currentActivity={currentActivity}
-      /> */}
+        modalTitle={modalTitle}
+      />
+      <DeleteModal
+        showModal={showModal.delete}
+        handleDelete={handleDelete}
+        handleClose={closeModal}
+      />
+      <Snackbar showSnack={showSnack} hideSnack={() => setShowSnack(false)} />
     </>
   );
 };

@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import { Box, TextField } from '@mui/material';
 import { activityPropTypes } from '../lib';
 
 const BillableForm = ({ activity, handleChange }) => {
   return (
     <Box className="d-flex flex-column" component="form" autoComplete="off">
       <TextField
-        id="outlined-required"
         label="Client number"
         className="m-3"
         variant="standard"
@@ -18,7 +16,6 @@ const BillableForm = ({ activity, handleChange }) => {
         }}
       />
       <TextField
-        id="outlined-required"
         label="Client name"
         className="m-3"
         variant="standard"
@@ -28,7 +25,6 @@ const BillableForm = ({ activity, handleChange }) => {
         }}
       />
       <TextField
-        id="outlined-required"
         label="Eng name"
         className="m-3"
         variant="standard"
@@ -38,7 +34,6 @@ const BillableForm = ({ activity, handleChange }) => {
         }}
       />
       <TextField
-        id="outlined-required"
         label="Charge code"
         className="m-3"
         variant="standard"
@@ -48,7 +43,6 @@ const BillableForm = ({ activity, handleChange }) => {
         }}
       />
       <TextField
-        id="outlined-required"
         className="m-3"
         multiline
         rows="3"

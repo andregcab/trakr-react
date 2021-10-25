@@ -27,18 +27,18 @@
       display: inline-flex;
       flex-direction: column;
       background-color: $card-white;
-
       .item-label {
         font-size: 12px;
       }
-      .set-width {
+      .item-text {
         max-width: 100px;
+        height: 24px;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
       }
       @media screen and (min-width: 375px) {
-        .set-width {
+        .item-text {
           max-width: 220px;
           overflow: hidden;
           white-space: nowrap;
@@ -52,13 +52,13 @@
         }
       }
       @media screen and (min-width: 768px) {
-        .set-width {
+        .item-text {
           max-width: 80px;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
         }
-        .personal-set-width {
+        .personal-item-text {
           max-width: 385px;
           overflow: hidden;
           white-space: nowrap;
@@ -66,13 +66,13 @@
         }
       }
       @media screen and (min-width: 992px) {
-        .set-width {
+        .item-text {
           max-width: 125px;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
         }
-        .personal-set-width {
+        .personal-item-text {
           max-width: 552px;
           overflow: hidden;
           white-space: nowrap;
@@ -90,7 +90,7 @@
       margin-left: auto;
       width: min-content;
       text-align: right;
-      align-self: flex-end;
+      align-self: center;
       .icon {
         color: lighten($text-black, 25);
       }

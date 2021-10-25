@@ -9,7 +9,7 @@ export const SESSIONS = gql`
       inSession
       lastStarted
       elapsedTime
-      activities {
+      activity {
         id
         engName
         chargeCode
@@ -18,6 +18,8 @@ export const SESSIONS = gql`
         createdAt
         updatedAt
         activityType
+        comment
+        sessionId
       }
     }
   }

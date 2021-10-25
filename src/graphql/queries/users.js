@@ -5,7 +5,8 @@ export const USER = gql`
     user(id: $id) {
       id
       email
-      name
+      firstName
+      lastName
       uuid
     }
   }
@@ -16,7 +17,8 @@ export const USER_WITH_SESSIONS_AND_ACTIVITIES = gql`
     user(id: $id) {
       id
       email
-      name
+      firstName
+      lastName
       uuid
       sessions {
         id
@@ -25,7 +27,7 @@ export const USER_WITH_SESSIONS_AND_ACTIVITIES = gql`
         inSession
         lastStarted
         elapsedTime
-        activities {
+        activity {
           id
           engName
           chargeCode
@@ -34,6 +36,7 @@ export const USER_WITH_SESSIONS_AND_ACTIVITIES = gql`
           createdAt
           updatedAt
           activityType
+          comment
         }
       }
     }

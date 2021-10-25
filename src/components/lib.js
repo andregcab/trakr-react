@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types';
 
 export const DEFAULT_ACTIVITY = {
-  id: '',
-  activity_type: '',
-  eng_name: '',
-  charge_code: '',
-  client_name: '',
-  client_number: '',
+  activityType: 'NEW',
+  engName: '',
+  chargeCode: '',
+  clientName: '',
+  clientNumber: '',
   comment: '',
 };
 
@@ -30,5 +29,11 @@ export const sessionPropTypes = PropTypes.shape({
   inSession: PropTypes.bool,
   createdAt: PropTypes.string,
   userId: PropTypes.number,
-  activities: PropTypes.arrayOf(activityPropTypes),
+  activity: activityPropTypes,
 });
+
+export const activityUpdateData = (data) => {
+  return Object.keys(DEFAULT_ACTIVITY).reduce((acc, curr) => {
+    return { ...acc, [curr]: data[curr] || null };
+  }, {});
+};
