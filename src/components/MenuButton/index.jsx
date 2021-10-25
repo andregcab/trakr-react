@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { MenuItem, Menu, IconButton } from '@mui/material';
 import { ContentCopy, Delete, MoreVert, Edit } from '@mui/icons-material';
+import { sessionPropTypes } from 'components/lib';
 
-const BillableItem = ({ handleShow }) => {
+const MenuButton = ({ handleShow, noCopy, session }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = !!anchorEl;
 
@@ -31,19 +32,21 @@ const BillableItem = ({ handleShow }) => {
           'aria-labelledby': 'actions-btn',
         }}
       >
-        <MenuItem onClick={() => handleShow('edit')}>
+        <MenuItem onClick={() => handleShow('edit', session.activity)}>
           <IconButton aria-label="edit">
             <Edit className="icon" />
           </IconButton>
           <span id="menu-text">Edit</span>
         </MenuItem>
-        <MenuItem onClick={() => handleShow('edit')}>
-          <IconButton aria-label="copy">
-            <ContentCopy className="icon" />
-          </IconButton>
-          <span>Copy</span>
-        </MenuItem>
-        <MenuItem onClick={() => handleShow('delete')}>
+        {!noCopy && (
+          <MenuItem onClick={() => handleShow('edit')}>
+            <IconButton aria-label="copy">
+              <ContentCopy className="icon" />
+            </IconButton>
+            <span>Copy</span>
+          </MenuItem>
+        )}
+        <MenuItem onClick={() => handleShow('delete', session.activity)}>
           <IconButton aria-label="delete">
             <Delete className="icon" />
           </IconButton>
@@ -54,8 +57,15 @@ const BillableItem = ({ handleShow }) => {
   );
 };
 
-BillableItem.propTypes = {
-  handleShow: PropTypes.func.isRequired,
+MenuButton.defaultProps = {
+  noCopy: false,
+  session: {},
 };
 
-export default BillableItem;
+MenuButton.propTypes = {
+  noCopy: PropTypes.bool,
+  handleShow: PropTypes.func.isRequired,
+  session: sessionPropTypes,
+};
+
+export default MenuButton;

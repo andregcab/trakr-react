@@ -46,7 +46,6 @@ const SessionItem = ({ session }) => {
         id: session.id,
         data: { activityAttributes: activityUpdateData(currentActivity) },
       },
-      refetchQueries: [{ query: SESSIONS, variables: { userId: '1' } }],
     });
   };
   const handleDelete = () => {

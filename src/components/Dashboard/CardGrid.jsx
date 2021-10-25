@@ -5,12 +5,12 @@ import Grid from '@mui/material/Grid';
 import { sessionPropTypes } from 'components/lib';
 import SessionCard from './SessionCard';
 
-const CardGrid = ({ sessions }) => (
+const CardGrid = ({ sessions, handleShow }) => (
   <Box sx={{ flexGrow: 1 }}>
     <Grid container spacing={2} justifyContent="flex-start" alignItems="flex-start">
       {sessions.map((session) => (
         <Grid item xs={12} md={4}>
-          <SessionCard key={session.id} session={session} />
+          <SessionCard key={session.id} session={session} handleShow={handleShow} />
         </Grid>
       ))}
     </Grid>
@@ -18,6 +18,7 @@ const CardGrid = ({ sessions }) => (
 );
 
 CardGrid.propTypes = {
+  handleShow: PropTypes.func.isRequired,
   sessions: PropTypes.arrayOf(sessionPropTypes).isRequired,
 };
 

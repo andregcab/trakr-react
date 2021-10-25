@@ -33,10 +33,5 @@ export const useElapsedTime = (session) => {
   const minutes = displayedTime % 60;
   const hours = Math.floor(displayedTime / 60);
 
-  console.log(`${hours}h ${minutes}m`);
-
-  return {
-    minutes,
-    hours,
-  };
+  return { displayedTime, minutes, hours };
 };

@@ -19,6 +19,7 @@ export const CREATE_SESSION = gql`
         updatedAt
         activityType
         comment
+        sessionId
       }
     }
   }
@@ -43,6 +44,7 @@ export const UPDATE_SESSION = gql`
         updatedAt
         activityType
         comment
+        sessionId
       }
     }
   }
@@ -67,6 +69,7 @@ export const DELETE_SESSION = gql`
         updatedAt
         activityType
         comment
+        sessionId
       }
     }
   }

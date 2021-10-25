@@ -19,6 +19,7 @@ export const SESSIONS = gql`
         updatedAt
         activityType
         comment
+        sessionId
       }
     }
   }

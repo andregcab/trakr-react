@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import { ListGroup } from 'react-bootstrap';
-import MenuButton from './MenuButton';
+import MenuButton from '../MenuButton';
 import { activityPropTypes, sessionPropTypes } from '../lib';
 
 const PersonalItem = ({ activity, handleShow, session }) => {
