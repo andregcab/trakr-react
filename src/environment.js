@@ -17,7 +17,8 @@ const env = {
   },
   production: {
     ROUTER_BASE_NAME: '/',
-    API_BASE_URL: '',
+    API_BASE_URL: 'https://3.141.107.189/api/trakr',
+    API_GQL_PATH: '/graphql',
   },
 };
 
