@@ -8,6 +8,7 @@ import {
   faChevronCircleLeft,
   faChevronCircleRight,
   faCopy,
+  faHourglassStart,
   faStopwatch,
   faTimes,
 } from '@fortawesome/free-solid-svg-icons';
@@ -20,6 +21,7 @@ library.add(
   faChevronCircleLeft,
   faChevronCircleRight,
   faCopy,
+  faHourglassStart,
   faStopwatch,
   faTimes
 );
