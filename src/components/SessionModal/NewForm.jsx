@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box, InputLabel, MenuItem, FormControl, Select } from '@mui/material';
+import { modalFormType } from './modalFormType';
+import { activityPropTypes } from '../lib';
 
-const NewForm = ({ handleChange }) => {
+const NewForm = ({ currentActivity, handleChange }) => {
   const [activityType, setActivityType] = useState('');
+  const formType = modalFormType({ activity: currentActivity, handleChange });
 
   return (
-    <Box sx={{ minWidth: 120 }}>
-      <FormControl fullWidth>
+    <Box>
+      <FormControl className="activity-select">
         <InputLabel>Activity Type</InputLabel>
         <Select
-          className="mb-4"
           variant="standard"
           value={activityType}
           label="Activity Type"
@@ -23,12 +25,14 @@ const NewForm = ({ handleChange }) => {
           <MenuItem value="PERSONAL">Personal</MenuItem>
         </Select>
       </FormControl>
+      {formType}
     </Box>
   );
 };
 
 NewForm.propTypes = {
   handleChange: PropTypes.func.isRequired,
+  currentActivity: activityPropTypes.isRequired,
 };
 
 export default NewForm;

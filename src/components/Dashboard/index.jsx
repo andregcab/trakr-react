@@ -2,45 +2,35 @@ import React, { useState } from 'react';
 import { Container } from 'react-bootstrap';
 import AddIcon from '@mui/icons-material/Add';
 import { Fab } from '@mui/material';
-import { useQuery, useMutation } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { SESSIONS } from 'graphql/queries';
-import { CREATE_SESSION, DELETE_SESSION, UPDATE_SESSION } from 'graphql/mutations';
+import { useSession } from 'lib/useSession';
 import NoSessions from './NoSessions';
 import CardGrid from './CardGrid';
 import SessionModal from '../SessionModal';
 import DeleteModal from '../DeleteModal';
 import Snackbar from '../SnackBar';
-import { DEFAULT_ACTIVITY, activityUpdateData } from '../lib';
+import { DEFAULT_ACTIVITY } from '../lib';
 
 const Dashboard = () => {
   const [currentActivity, setCurrentActivity] = useState(DEFAULT_ACTIVITY);
   const [showModal, setShowModal] = useState({ new: false, edit: false, delete: false });
   const [showSnack, setShowSnack] = useState(false);
-
   const { loading, data } = useQuery(SESSIONS, { variables: { userId: '1' } });
-  const [sessionCreate] = useMutation(CREATE_SESSION, {
-    onCompleted: () => {
-      setCurrentActivity(DEFAULT_ACTIVITY);
-      setShowModal({ new: false, edit: false, delete: false });
-      setShowSnack('added');
-    },
-  });
-  const [sessionDelete] = useMutation(DELETE_SESSION, {
-    onCompleted: () => {
-      setCurrentActivity(DEFAULT_ACTIVITY);
-      setShowModal({ new: false, edit: false, delete: false });
-      setShowSnack('deleted');
-    },
-  });
-  const [sessionUpdate] = useMutation(UPDATE_SESSION, {
-    onCompleted: () => {
-      setCurrentActivity(DEFAULT_ACTIVITY);
-      setShowModal({ new: false, edit: false, delete: false });
-      setShowSnack('updated');
-    },
+  const { handleDelete, handleSave } = useSession({
+    currentActivity,
+    setCurrentActivity,
+    showModal,
+    setShowModal,
+    setShowSnack,
   });
 
   if (loading) return '';
+
+  const closeModal = () => {
+    setCurrentActivity(DEFAULT_ACTIVITY);
+    setShowModal({ new: false, edit: false, delete: false });
+  };
 
   const handleShow = (type, activity) => {
     if (type === 'edit' || type === 'delete') {
@@ -48,41 +38,11 @@ const Dashboard = () => {
     }
     setShowModal((prev) => ({ ...prev, [type]: true }));
   };
-
-  const closeModal = () => {
-    setCurrentActivity(DEFAULT_ACTIVITY);
-    setShowModal({ new: false, edit: false, delete: false });
-  };
-
   const handleChange = (value, field) => {
-    return setCurrentActivity((prev) => ({
+    setCurrentActivity((prev) => ({
       ...prev,
       [field]: value,
     }));
-  };
-
-  const handleDelete = () => {
-    sessionDelete({
-      variables: { id: currentActivity.sessionId },
-      refetchQueries: [{ query: SESSIONS, variables: { userId: '1' } }],
-    });
-  };
-
-  const handleSave = () => {
-    if (showModal.edit) {
-      return sessionUpdate({
-        variables: {
-          id: currentActivity.sessionId,
-          data: { activityAttributes: activityUpdateData(currentActivity) },
-        },
-      });
-    }
-    return sessionCreate({
-      variables: {
-        data: { userId: '1', activityAttributes: activityUpdateData(currentActivity) },
-      },
-      refetchQueries: [{ query: SESSIONS, variables: { userId: '1' } }],
-    });
   };
 
   const userHasSessions = !!data.sessions.length;
