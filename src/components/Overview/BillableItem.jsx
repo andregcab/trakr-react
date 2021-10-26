@@ -35,7 +35,7 @@ const BillableItem = ({ activity, handleShow, session }) => {
         <span className="item-label">Time spent</span>
         <span>{`${hours}h ${minutes}m`}</span>
       </ListGroup.Item>
-      <MenuButton handleShow={handleShow} />
+      <MenuButton noCopy handleShow={handleShow} />
     </ListGroup>
   );
 };

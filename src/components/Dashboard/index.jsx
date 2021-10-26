@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Container } from 'react-bootstrap';
-import AddIcon from '@mui/icons-material/Add';
 import { Fab } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import Tooltip from '@mui/material/Tooltip';
 import { useQuery } from '@apollo/client';
 import { SESSIONS } from 'graphql/queries';
 import { useSession } from 'lib/useSession';
@@ -25,7 +26,7 @@ const Dashboard = () => {
     setShowSnack,
   });
 
-  if (loading) return '';
+  if (loading || !data) return '';
 
   const closeModal = () => {
     setCurrentActivity(DEFAULT_ACTIVITY);
@@ -51,7 +52,7 @@ const Dashboard = () => {
   return (
     <>
       <div className="dashboard-container">
-        <h2 className="my-3 mb-5">My Dashboard</h2>
+        <h2 className="my-3 mb-5">Daily Dashboard</h2>
         <Container>
           {userHasSessions ? (
             <CardGrid sessions={data.sessions} handleShow={handleShow} />
@@ -59,9 +60,11 @@ const Dashboard = () => {
             <NoSessions />
           )}
         </Container>
-        <Fab onClick={() => handleShow('new')} aria-label="add" className="add-btn">
-          <AddIcon />
-        </Fab>
+        <Tooltip title="Add a new Session" placement="top" arrow>
+          <Fab onClick={() => handleShow('new')} aria-label="add" className="add-btn">
+            <AddIcon />
+          </Fab>
+        </Tooltip>
       </div>
       <SessionModal
         newSession={showModal.new}
