@@ -19,7 +19,7 @@ const SessionCard = ({ session, handleShow }) => {
     });
   };
 
-  const { hours, minutes, displayedTime } = useElapsedTime(session);
+  const { hours, minutes, seconds, displayedTime } = useElapsedTime(session);
   const { inSession } = session;
   const billableActivity = session.activity.activityType === 'BILLABLE';
   const timeColor = inSession ? '#91b194' : '#ff4646d1';
@@ -33,7 +33,7 @@ const SessionCard = ({ session, handleShow }) => {
       />
       <CardContent>
         <Typography variant="h5" sx={{ mb: 3 }} color={timeColor} gutterBottom>
-          {`${hours}h ${minutes}m`}
+          {`${hours}h ${minutes}m ${seconds}s`}
         </Typography>
         <Typography className="billable-text" sx={{ mb: 1.5 }} color="text.secondary">
           {billableActivity && `Eng name: ${session.activity.engName}`}
