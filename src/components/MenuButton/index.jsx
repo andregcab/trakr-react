@@ -38,14 +38,14 @@ const MenuButton = ({ handleShow, noCopy, session }) => {
           </IconButton>
           <span id="menu-text">Edit</span>
         </MenuItem>
-        {!noCopy && (
+        {/* {noCopy && (
           <MenuItem onClick={() => handleShow('edit')}>
             <IconButton aria-label="copy">
               <ContentCopy className="icon" />
             </IconButton>
             <span>Copy</span>
           </MenuItem>
-        )}
+        )} */}
         <MenuItem onClick={() => handleShow('delete', session.activity)}>
           <IconButton aria-label="delete">
             <Delete className="icon" />
