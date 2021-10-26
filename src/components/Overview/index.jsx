@@ -6,11 +6,11 @@ import SessionItem from './SessionItem';
 
 const Overview = () => {
   const { loading, data } = useQuery(SESSIONS, { variables: { userId: '1' } });
-  if (loading) return '';
+  if (loading || !data) return '';
 
   return (
     <div className="overview-container">
-      <h2 className="my-3 mb-5">My overview</h2>
+      <h2 className="my-3 mb-5">Overview</h2>
       <Container>
         <Row className="justify-content-center">
           {data.sessions.map((session) => (
