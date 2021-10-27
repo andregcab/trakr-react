@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
+// import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 // import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -16,14 +16,14 @@ const SearchInput = () => {
   const [inputValue, setInputValue] = useState('');
   const [options, setOptions] = useState([]);
 
-  const { loading, data, error } = useQuery(CLIENTS, { variables: { searchTerm: inputValue } });
-
-  useEffect(() => {
-    if (inputValue === '') {
-      setOptions(value ? [value] : []);
-      return undefined;
-    }
-  }, [value, inputValue]);
+  const { loading, data } = useQuery(CLIENTS, { variables: { searchTerm: inputValue } });
+  // gets info, something wrong with typeahead, this will work one day!@!!!
+  // useEffect(() => {
+  //   if (inputValue === '') {
+  //     setOptions(value ? [value] : []);
+  //     return undefined;
+  //   }
+  // }, [value, inputValue]);
   if (loading && !data) return '';
   //   const fetch = useMemo(
   //     () =>

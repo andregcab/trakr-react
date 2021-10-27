@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Box, TextField } from '@mui/material';
 import { activityPropTypes } from '../lib';
-// import SearchInput from './SearchInput';
+import SearchInput from './SearchInput';
 
 const BillableForm = ({ activity, handleChange }) => {
   return (
     <Box className="d-flex flex-column" component="form" autoComplete="off">
-      {/* <SearchInput /> */}
-      <TextField
+      <SearchInput />
+      {/* <TextField
         label="Client name"
         className="m-3"
         variant="standard"
@@ -16,7 +16,7 @@ const BillableForm = ({ activity, handleChange }) => {
         onChange={(e) => {
           handleChange(e.target.value, 'clientName');
         }}
-      />
+      /> */}
       <TextField
         label="Client number"
         className="m-3"
