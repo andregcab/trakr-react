@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, TextField } from '@mui/material';
+import SearchInput from './SearchInput';
 
 export const modalFormType = ({ activity, handleChange }) => {
   return {
@@ -30,21 +31,22 @@ export const modalFormType = ({ activity, handleChange }) => {
     BILLABLE: (
       <Box className="d-flex flex-column" component="form" autoComplete="off">
         <TextField
-          label="Client number"
-          className="m-3"
-          variant="standard"
-          value={activity.clientNumber}
-          onChange={(e) => {
-            handleChange(e.target.value, 'clientNumber');
-          }}
-        />
-        <TextField
           label="Client name"
           className="m-3"
           variant="standard"
           value={activity.clientName}
           onChange={(e) => {
             handleChange(e.target.value, 'clientName');
+          }}
+        />
+        {/* <SearchInput /> */}
+        <TextField
+          label="Client number"
+          className="m-3"
+          variant="standard"
+          value={activity.clientNumber}
+          onChange={(e) => {
+            handleChange(e.target.value, 'clientNumber');
           }}
         />
         <TextField
