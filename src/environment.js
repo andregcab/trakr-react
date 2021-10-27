@@ -17,7 +17,8 @@ const env = {
   },
   production: {
     ROUTER_BASE_NAME: '/',
-    API_BASE_URL: '',
+    API_BASE_URL: 'http://3.145.13.105',
+    API_GQL_PATH: '/graphql',
   },
 };
 
