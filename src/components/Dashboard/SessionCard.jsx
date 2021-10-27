@@ -1,4 +1,5 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button, Card, CardHeader, CardActions, CardContent, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import { useMutation } from '@apollo/client';
@@ -34,6 +35,13 @@ const SessionCard = ({ session, handleShow }) => {
       <CardContent>
         <Typography variant="h5" sx={{ mb: 3 }} color={timeColor} gutterBottom>
           {`${hours}h ${minutes}m`}
+          <FontAwesomeIcon
+            className="ms-2"
+            rotation={!inSession && 180}
+            spin={inSession}
+            icon="hourglass-start"
+            size="md"
+          />
         </Typography>
         <Typography className="billable-text" sx={{ mb: 1.5 }} color="text.secondary">
           {billableActivity && `Eng name: ${session.activity.engName}`}

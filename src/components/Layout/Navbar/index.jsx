@@ -7,7 +7,8 @@ import { useQuery } from '@apollo/client';
 import { USER } from 'graphql/queries';
 
 const NavBar = () => {
-  const { loading, data } = useQuery(USER, { variables: { id: '1' } });
+  const { loading, data } = useQuery(USER, { variables: { id: 1 } });
+
   if (loading) return '';
   const { firstName } = data.user;
 
